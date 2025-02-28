@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import {useNavigate,Link} from 'react-router-dom';
 import axios from 'axios';
 import route from '../route';
-import './Signup.scss'; // Importing the SCSS file for styling
+ // Importing the SCSS file for styling
 
 const Signup = () => {
   const navigate=useNavigate();

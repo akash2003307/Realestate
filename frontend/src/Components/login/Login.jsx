@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import route from '../route';
-import { FaFacebook, FaGoogle } from 'react-icons/fa';
-import './login.scss';
+
 
 const Login = () => {
   const navigate = useNavigate();
@@ -67,10 +66,10 @@ const Login = () => {
         <div className="social-login">
           <div className="social-icons">
             <div className="social-icon facebook">
-              <FaFacebook size={24} color="#fff" />
+             
             </div>
             <div className="social-icon google">
-              <FaGoogle size={24} color="#fff" />
+              
             </div>
           </div>
         </div>

@@ -5,12 +5,10 @@ import Signup from './Components/signup/Signup';
 import './App.css'
 
 const App = () => {
-    const [loggedIn,setLoggedIn]=useState(false); 
   return (
     <BrowserRouter>
-    <Navbar username={username} role={role} loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>
       <Routes>
-        <Route path='/login' Component={Login}/>
+        <Route path='/' element={<Login/>}/>
         <Route path='/signup' Component={Signup}/>
         
       </Routes>
