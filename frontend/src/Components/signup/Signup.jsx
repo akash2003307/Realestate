@@ -1,9 +1,7 @@
-// src/components/Signup.js
 import React, { useState } from 'react';
-import {useNavigate,Link} from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 import route from '../route';
- // Importing the SCSS file for styling
 
 const Signup = () => {
   const navigate=useNavigate();
@@ -22,7 +20,7 @@ const Signup = () => {
     setUser((pre)=>({...pre,[e.target.name]:e.target.value}))
   }
   const handlePassword=(e)=>{
-    const regex = /^(?=.[A-Z])(?=.\d)(?=.[!@#$%^&(),.?":{}|<>]).{8,}$/;
+    const regex = /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>]).{8,}$/;
   if (regex.test(e.target.value)) {
     setUser((pre)=>({...pre,[e.target.name]:e.target.value}));
     if (e.target.name=="password") {
@@ -47,7 +45,7 @@ const Signup = () => {
       if(status===201){
         localStorage.removeItem('email');
         alert(data.msg);
-        navigate('/login')
+        navigate('/')
       }
       else{
         alert(data.msg)
@@ -61,29 +59,59 @@ const Signup = () => {
   };
 
   return (
-    <div className="signup-container">
-      <div className="signup-box">
-      <div className="hader">
-        <h1>Sign Up</h1>
-        <p>Sign up now to become a member.</p>
-      </div>
-
-        <form onSubmit={handleSubmit}>
-          <input type="text" placeholder="Enter Name" id="username" name="username" onChange={handleChange} />
-          <input type="password" placeholder="Choose A Password" id="password" className={checkPassword? "strong":"weak"} name="password" onChange={handlePassword} />
-          <input type="password" placeholder="Re-Enter Password" id="cpassword" className={checkCPassword? "strong":"weak"}  name="cpassword" onChange={handlePassword} />
-            <select  id="role" name="role" onChange={handleChange}>
-              <option value="">Select your role</option>
-              <option value="buyer">Buyer</option>
-              <option value="seller">Seller</option>
-            </select>
-            
-          <button type="submit" className="signup-btn">Sign Up</button>
+    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+      <div className="bg-white shadow-lg rounded-2xl p-8 w-96">
+        <h2 className="text-2xl font-semibold text-center text-gray-700">Sign Up</h2>
+        <p className="text-sm text-center text-gray-500 mb-4">Sign up now to become a member.</p>
+        
+        <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
+          <input 
+            type="text" 
+            placeholder="Enter Name" 
+            id="username" 
+            name="username" 
+            onChange={handleChange} 
+            className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+          />
+          <input 
+            type="password" 
+            placeholder="Choose A Password" 
+            id="password" 
+            name="password" 
+            onChange={handlePassword} 
+            className={`w-full px-4 py-2 border rounded-lg focus:outline-none ${checkPassword ? 'border-green-500' : 'border-red-500'}`}
+          />
+          <input 
+            type="password" 
+            placeholder="Re-Enter Password" 
+            id="cpassword" 
+            name="cpassword" 
+            onChange={handlePassword} 
+            className={`w-full px-4 py-2 border rounded-lg focus:outline-none ${checkCPassword ? 'border-green-500' : 'border-red-500'}`}
+          />
+          <select 
+            id="role" 
+            name="role" 
+            onChange={handleChange} 
+            className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+          >
+            <option value="">Select your role</option>
+            <option value="buyer">Buyer</option>
+            <option value="seller">Seller</option>
+          </select>
+          
+         
+          <button 
+            type="submit" 
+            className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition duration-200"
+          >
+            Sign Up
+          </button>
+         
         </form>
-        <div className="extra-links">
-          <p className="login-link">
-            Already have an account? <Link to={"/login"}>Login </Link>
-          </p>
+        
+        <div className="text-sm text-center text-gray-500 mt-4">
+          Already have an account? <Link to="/" className="text-blue-500">Login</Link>
         </div>
       </div>
     </div>
